@@ -43,14 +43,12 @@ public class Client extends JFrame{
 		btX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SystemX();
-				this.setVisible(true);
 				
 			}
 		});
 		btY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SystemY();
-				this.setVisible(true);
 			}
 		});
 	}
