@@ -1,6 +1,7 @@
 package productline;
 
 import java.awt.Button;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,16 +21,22 @@ public class Client extends JFrame{
 		new Client();
 	}
 	
-	
-	//客戶端介面
 	public Client() {
-		this.setLayout(new GridLayout(0, 2));
 		this.setTitle("生產線模擬器");
-		JButton btX = new JButton("X 系統");
-		JButton btY = new JButton("Y 系統");
+		this.setSize(600, 300);
+		this.setLayout(new GridLayout(2, 2));
+		
+		ImageIcon img1 = new ImageIcon("src/Image/shoes.jpg");
+		this.add(new JLabel(img1));
+		ImageIcon img2 = new ImageIcon("src/Image/car.jpg");
+		this.add(new JLabel(img2));
+		
+		JButton btX = new JButton("鞋子");
+		btX.setFont(new Font("Serif",Font.BOLD,15));
 		this.add(btX);
+		JButton btY = new JButton("汽車");
+		btY.setFont(new Font("Serif",Font.BOLD,15));
 		this.add(btY);
-		this.setSize(300, 200);
 		this.setVisible(true);
 
 		// 事件觸發
