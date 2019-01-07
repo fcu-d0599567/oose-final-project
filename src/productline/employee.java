@@ -46,5 +46,9 @@ public class employee {
 	public void setWork(boolean isWork) {
 		this.isWork = isWork;
 	}
+	
+	public void reWork() {
+		this.isWork=false;
+	}
 
 }

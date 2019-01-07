@@ -4,6 +4,7 @@ import productline.Productline.AbstractPart;
 
 public class empolyeeSystem {
 	employee[] employees;
+	AbstractPart[] chain;
 	public empolyeeSystem(employee[] employees) {
 		this.employees = employees;
 		
@@ -18,13 +19,20 @@ public class empolyeeSystem {
 			if(chain[x].getCondition().equals("Strength")) {
 				employee_ID = makeStrength();
 				employees[employee_ID].setPosition(chain[x].position);
-				employees[employee_ID].setWork(true);;
+				employees[employee_ID].setWork(true);
+				chain[x].setEffective(employees[employee_ID].getStrength());
 				result[x] = employees[employee_ID];
 			}else if(chain[x].getCondition().equals("Job score")) {
 				employee_ID = makeJob_score();
+				employees[employee_ID].setPosition(chain[x].position);
+				employees[employee_ID].setWork(true);
+				chain[x].setEffective(employees[employee_ID].getJob_score());
 				result[x] = employees[employee_ID];
 			}else if(chain[x].getCondition().equals("Carefulness")) {
 				employee_ID = makeCarefulness();
+				employees[employee_ID].setPosition(chain[x].position);
+				employees[employee_ID].setWork(true);
+				chain[x].setEffective(employees[employee_ID].getCarefulness());
 				result[x] = employees[employee_ID];
 			}
 			
@@ -32,8 +40,23 @@ public class empolyeeSystem {
 				System.out.println("¤H¼Æ¤£¨¬.");
 			}
 		}
-		
+		this.chain = chain;
 		return result;
+	}
+	
+	public int[] startSimulator() {
+		int finalProductCount = 123456789;
+		int[] productCount = new int[6];
+		
+		for(int x=0; x < chain.length; x++) {
+			if(chain[x].getEffective() < finalProductCount) {
+				finalProductCount = chain[x].getEffective();
+			}
+			productCount[x] = chain[x].getEffective();
+			
+		}
+		productCount[chain.length] = finalProductCount;
+		return productCount;
 	}
 	
 	public int makeStrength() {
@@ -64,11 +87,8 @@ public class empolyeeSystem {
 				maxJob_score = employees[i].getJob_score();
 				max= i;
 				}
-				
 			}
 		}
-		employees[max].setPosition("Job_score");
-		employees[max].setWork(true);
 		return max;
 	}
 	
@@ -83,12 +103,8 @@ public class empolyeeSystem {
 				maxCarefulness = employees[i].getCarefulness();
 				max= i;
 				}
-				
 			}
 		}
-		employees[max].setPosition("Carefulness");
-		employees[max].setWork(true);
 		return max;
 	}
-
 }
