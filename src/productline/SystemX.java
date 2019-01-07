@@ -17,7 +17,7 @@ public class SystemX extends JFrame {
 	Container cp;
 
 	public SystemX(employee[] employees) {
-		empolyeeSystem empolyeeSystem = new empolyeeSystem(employees);
+		this.employees = employees;
 		this.setTitle("鞋子模擬器");
 		this.setSize(600, 300);
 		cp = this.getContentPane();
@@ -45,13 +45,17 @@ public class SystemX extends JFrame {
 
 		// 事件觸發
 		bt1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {/*
+			public void actionPerformed(ActionEvent e) {
+				Productline p = new Productline(employees);
+				
 				JFrame assign = new JFrame();
 				assign.setTitle("鞋子-工作崗位");
 				assign.setSize(300, 300);
 				cp = assign.getContentPane();
-				employee result[] = assignWork();
+				employee[] result = p.assignWork();
+				System.out.println(result.length);
 				Object[][] assignEmpolyee = new Object[result.length][2];
+				
 				for (int x = 0; x < result.length; x++) {
 					assignEmpolyee[x][0] = result[x].getName();
 					assignEmpolyee[x][1] = result[x].getPosition();
@@ -60,7 +64,7 @@ public class SystemX extends JFrame {
 				JTable jt = new JTable(assignEmpolyee, columns);
 				jt.setPreferredScrollableViewportSize(new Dimension(300, 300));
 				cp.add(new JScrollPane(jt));
-				assign.setVisible(true);*/
+				assign.setVisible(true);
 			}
 		});
 		bt2.addActionListener(new ActionListener() {
