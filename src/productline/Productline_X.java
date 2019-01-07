@@ -1,78 +1,61 @@
 package productline;
 
-class Productline_X extends Productline implements AbstractFactory{
+class Productline_X extends Productline{
 
-	public Productline_X(employee[] employees) {
+	public Productline_X(Employee[] employees) {
 		super(employees);
-		// TODO Auto-generated constructor stub
+		empolyeeSystem = new EmpolyeeSystem_X(employees);
+		
 	}
 	
 	public void makeProduct() {
-		System.out.println("PAPA");
-		chain = new AbstractPart[5];
-		AbstractPart part1 = createPart1();
-		AbstractPart part2 = createPart2();
-		AbstractPart part3 = createPart3();
-		chain[0] = part1;
-		chain[1] = part2;
-		chain[2] = part3;
-		chain[3] = part2;
-		chain[4] = part1;
-		
+		worklist = new Component[5];
+		Component part1 = createUpper();
+		Component part2 = createOutsole();
+		Component part3 = createLace();
+		worklist[0] = part1;
+		worklist[1] = part2;
+		worklist[2] = part3;
+		worklist[3] = part2;
+		worklist[4] = part1;
 	}
 
-	@Override
-	public AbstractPart createPart1() {
-		// TODO Auto-generated method stub
-		return new Part1();
+	public Component createUpper() {
+		//製作鞋面
+		return new Upper();
 	}
 
-	@Override
-	public AbstractPart createPart2() {
-		// TODO Auto-generated method stub
-		return new Part2();
+	public Component createOutsole() {
+		//製作鞋底
+		return new Outsole();
 	}
 
-	public AbstractPart createPart3() {
-		// TODO Auto-generated method stub
-		return new Part3();
+	public Component createLace() {
+		//製作鞋帶
+		return new Lace();
 	}
-	
 }
 
-class Part1 extends AbstractPart {
-
-	public Part1() {
+class Upper extends Component {
+	//鞋面實體
+	public Upper() {
 		condition = "Strength";
-		position = "base";
+		position = "make Upper";
 	}
-
-	public void mackPart1() {
-		// 系列A的實踐的方法
-	}
-
 }
 
-class Part2 extends AbstractPart {
-
-	public Part2() {
+class Outsole extends Component {
+	//鞋底實體
+	public Outsole() {
 		condition = "Job score";
-		position = "top";
-	}
-
-	public void mackPart2() {
-		// 系列A的實踐的方法
+		position = "make Outsole";
 	}
 }
 
-class Part3 extends AbstractPart {
-
-	public Part3() {
+class Lace extends Component {
+	//鞋帶實體
+	public Lace() {
 		condition = "Carefulness";
-		position = "data";
-	}
-
-	public void mackPart3() {
-		// 系列A的實踐的方法
+		position = "make Lace";
 	}
 }

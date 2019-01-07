@@ -1,6 +1,6 @@
 package productline;
 
-public class employee {
+public class Employee {
 	private String name;
 	private int strength;
 	private int job_score;
@@ -8,7 +8,7 @@ public class employee {
 	private String position = null;
 	private boolean isWork = false;
 
-	public employee(String name, int strength, int job_score, int carefulness) {
+	public Employee(String name, int strength, int job_score, int carefulness) {
 		this.name = name;
 		this.strength = strength;
 		this.job_score = job_score;

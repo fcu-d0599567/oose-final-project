@@ -1,36 +1,31 @@
 package productline;
 
-abstract class Productline {
-	empolyeeSystem empolyeeSystem;
-	AbstractPart[] chain;
+abstract class Productline{
+	EmpolyeeSystem empolyeeSystem;
+	Component[] worklist;
 	
-	public Productline(employee[] employees) {
-		empolyeeSystem = new empolyeeSystem(employees);
-
+	public Productline(Employee[] employees) {
 		makeProduct();
 
 	}
+	abstract void makeProduct();
 	
-	public employee[] assignWork() {
-		return empolyeeSystem.assingWork(chain);
+	public Employee[] assignWork() {
+		return empolyeeSystem.assingWork(worklist);
 	}
 
 	public int[] startSimulator() {
 		return empolyeeSystem.startSimulator();
 	}
 	
-	abstract void makeProduct();
+	public Employee[] changeEmpollyee(String man1,String man2) {
+		return empolyeeSystem.changeEmpollyee(man1,man2);
+	}
 }
 
-interface AbstractFactory {
-	public AbstractPart createPart1();
-
-	public AbstractPart createPart2();
-}
-
-class AbstractPart {
-	protected String condition = "papa";
-	protected String position = "papa";
+class Component {
+	protected String condition = "Sample";
+	protected String position = "Sample";
 	protected int effective;
 
 	public void setEffective(int effective) {

@@ -14,13 +14,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class SystemX extends JFrame {
-	employee[] employees;
-	employee[] result;
+	Employee[] Employees;
+	Employee[] result;
 	int[] effect;
 	Container cp;
 
-	public SystemX(employee[] employees) {
-		this.employees = employees;
+	public SystemX(Employee[] employees) {
+		this.Employees = employees;
 		this.setTitle("鞋子模擬器");
 		this.setSize(600, 300);
 		cp = this.getContentPane();
@@ -134,6 +134,12 @@ public class SystemX extends JFrame {
 				});
 			}
 		});
+		
+		
+//		我寫了交換員工的方法惹  宣告成這樣 public Employee[] changeEmpollyee(String man1,String man2)
+//		意思是你只要給我兩個人的名字，無論有沒有在工作崗位裡面，沒錯！ 無論有沒有在裡面我都可以交換他們！！
+//		然後你寫的其實有個漏洞，你沒改到EmpolyeeSystem裡面的Effective 所以模擬出來的結果還是一樣的，但是我也解決惹。  
+		
 		
 		bt2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
