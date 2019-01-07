@@ -18,10 +18,11 @@ public class Client extends JFrame{
 		employees[3] = new employee("Crasandra", 2, 4, 5);
 		employees[4] = new employee("Tina", 1, 5, 4);
 		
-		new Client();
+		new Client(employees);
+		
 	}
 	
-	public Client() {
+	public Client(employee[] employees) {
 		this.setTitle("生產線模擬器");
 		this.setSize(600, 300);
 		this.setLayout(new GridLayout(2, 2));
@@ -42,8 +43,7 @@ public class Client extends JFrame{
 		// 事件觸發
 		btX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SystemX();
-				
+				new SystemX(employees);
 			}
 		});
 		btY.addActionListener(new ActionListener() {
