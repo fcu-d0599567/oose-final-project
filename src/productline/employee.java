@@ -5,10 +5,10 @@ public class employee {
 	private int strength;
 	private int job_score;
 	private int carefulness;
-	private int position=0;
-	private boolean isWork=false;
-	
-	public employee(String name,int strength,int job_score,int carefuless) {
+	private String position = null;
+	private boolean isWork = false;
+
+	public employee(String name, int strength, int job_score, int carefulness) {
 		this.name = name;
 		this.strength = strength;
 		this.job_score = job_score;
@@ -16,36 +16,35 @@ public class employee {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public int getStrength() {
-		return strength;
+		return this.strength;
 	}
 
-
 	public int getJob_score() {
-		return job_score;
+		return this.job_score;
 	}
 
 	public int getCarefulness() {
-		return carefulness;
+		return this.carefulness;
 	}
 
-	public int getPosition() {
-		return position;
+	public String getPosition() {
+		return this.position;
 	}
 
-	public void setPosition(int position) {
+	public void setPosition(String position) {
 		this.position = position;
 	}
 
 	public boolean isWork() {
-		return isWork;
+		return this.isWork;
 	}
 
 	public void setWork(boolean isWork) {
 		this.isWork = isWork;
 	}
-	
+
 }
