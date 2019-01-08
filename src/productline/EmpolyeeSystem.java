@@ -10,7 +10,7 @@ abstract class EmpolyeeSystem {
 
 	}
 
-	abstract public Employee[] assingWork(Component[] worklist);
+	abstract public Employee[] assignWork(Component[] worklist);
 
 	abstract public int[] startSimulator();
 
@@ -68,36 +68,35 @@ abstract class EmpolyeeSystem {
 		String positionTemp;
 		int position_man1 = searchInTheList(result,man1);
 		int position_man2 = searchInTheList(result,man2);
-		System.out.print(position_man1);
-		System.out.print(position_man2);
+		System.out.println(position_man1);
+		System.out.println(position_man2);
 		
 		if(position_man1 != -1 && position_man2 != -1){ //兩個皆在已分配崗位上的員工列表  O|O 
-			temp = result[position_man1];
 			positionTemp = result[position_man1].getPosition();
-			
 			result[position_man1].setPosition(result[position_man2].getPosition());
 			result[position_man2].setPosition(positionTemp);
+			
+			temp = result[position_man1];
 			result[position_man1] = result[position_man2];  		//將man1 變成了 man2
 			result[position_man2] = temp;							//將man2 變成了 man1
-			resetEffective(position_man1,result[position_man2]); 	//重設更變後的 man1的值	
-			resetEffective(position_man2,result[position_man1]);						//重設變更後的man2的值
 			
+			this.worklist = resetEffective(result,worklist);					//重設
 			
 		}else if(searchInTheList(result,man1) != -1) {								  //man1在已分配崗位上，man2不是  O|X，不需要互換
 			position_man2 = searchInTheList(employee_list,man2);
-			positionTemp = result[position_man1].getPosition();
-			result[position_man1].setPosition(null);
-			result[position_man1] = employee_list[position_man2];
-			result[position_man2].setPosition(positionTemp);
-			resetEffective(position_man1,employee_list[position_man2]);
+			   positionTemp = result[position_man1].getPosition();
+			   employee_list[position_man2].setPosition(positionTemp);
+			   result[position_man1].setPosition(null);
+			   result[position_man1] = employee_list[position_man2];
+			   this.worklist = resetEffective(result,worklist);
 			
 		}else if(searchInTheList(result,man2) != -1) {								  //man2在已分配崗位上，man1不是  X|O，不需要互換
 			position_man1 = searchInTheList(employee_list,man1);
-			positionTemp = result[position_man2].getPosition();
-			result[position_man2].setPosition(null);
-			result[position_man2] = employee_list[position_man1];
-			result[position_man1].setPosition(positionTemp);
-			resetEffective(position_man2,employee_list[position_man1]);
+			   positionTemp = result[position_man2].getPosition();
+			   employee_list[position_man1].setPosition(positionTemp);
+			   result[position_man2].setPosition(null);
+			   result[position_man2] = employee_list[position_man1];
+			   this.worklist = resetEffective(result,worklist);
 			
 		}else {																		  //兩個都不在已分配崗位上
 			System.out.println("你為甚麼要做無意義的事情？");
@@ -119,15 +118,8 @@ abstract class EmpolyeeSystem {
 		return position;
 	}
 	
-	public void resetEffective(int position,Employee man) {  							//重設該工作崗位上的效率值
-		if (worklist[position].getCondition().equals("Strength")) {
-			worklist[position].setEffective(man.getStrength());
-			
-		} else if (worklist[position].getCondition().equals("Job score")) {
-			worklist[position].setEffective(man.getJob_score());
-			
-		} else if (worklist[position].getCondition().equals("Carefulness")) {
-			worklist[position].setEffective(man.getCarefulness());
-		}
-	}
+	abstract public Component[] resetEffective(Employee[] result,Component[] worklist);  //重設該工作崗位上的效率值
+		
+		
+	
 }

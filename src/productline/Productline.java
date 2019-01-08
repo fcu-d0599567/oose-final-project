@@ -11,7 +11,7 @@ abstract class Productline{
 	abstract void makeProduct();
 	
 	public Employee[] assignWork() {
-		return empolyeeSystem.assingWork(worklist);
+		return empolyeeSystem.assignWork(worklist);
 	}
 
 	public int[] startSimulator() {

@@ -110,6 +110,7 @@ public class SystemY extends JFrame{
 		
 		bt2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				effect = p.startSimulator();
 				int x=0;
 				JFrame mod = new JFrame();
 				mod .setTitle("汽車-工作崗位");

@@ -8,7 +8,7 @@ public class EmpolyeeSystem_Y extends EmpolyeeSystem{
 	}
 
 	@Override
-	public Employee[] assingWork(Component[] worklist) {
+	public Employee[] assignWork(Component[] worklist) {
 		Employee[] result = new Employee[5];
 		int ID;
 		for (int x = 0; x < worklist.length; x++) {
@@ -37,6 +37,7 @@ public class EmpolyeeSystem_Y extends EmpolyeeSystem{
 			
 		}
 		this.worklist = worklist;
+		this.result = result;
 		return result;
 	}
 
@@ -55,16 +56,21 @@ public class EmpolyeeSystem_Y extends EmpolyeeSystem{
 		productCount[worklist.length] = finalProductCount;
 		return productCount;
 	}
-	
-	public void resetEffective(int position,Employee man) {  							//重設該工作崗位上的效率值(此為Y系統，效率值算法不一樣)
-		if (worklist[position].getCondition().equals("Strength")) {
-			worklist[position].setEffective(6 - man.getStrength());
+
+	@Override
+	public Component[] resetEffective(Employee[] result, Component[] worklist) {
+		for(int x = 0;x < worklist.length ; x++) {
 			
-		} else if (worklist[position].getCondition().equals("Job score")) {
-			worklist[position].setEffective(6 - man.getJob_score());
-			
-		} else if (worklist[position].getCondition().equals("Carefulness")) {
-			worklist[position].setEffective(6 - man.getCarefulness());
+			if (worklist[x].getCondition().equals("Strength")) {
+				worklist[x].setEffective(6 - result[x].getStrength());
+			} else if (worklist[x].getCondition().equals("Job score")) {
+				worklist[x].setEffective(6 - result[x].getJob_score());
+			} else if (worklist[x].getCondition().equals("Carefulness")) {
+				worklist[x].setEffective(6 - result[x].getCarefulness());
+			}	
 		}
+		return worklist;
 	}
+	
+	
 }

@@ -118,6 +118,7 @@ public class SystemX extends JFrame {
 		
 		bt2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				effect = p.startSimulator();
 				int x=0;
 				JFrame mod = new JFrame();
 				mod .setTitle("鞋子-工作崗位");

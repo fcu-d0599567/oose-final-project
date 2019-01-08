@@ -8,7 +8,7 @@ public class EmpolyeeSystem_X extends EmpolyeeSystem{
 	}
 
 	@Override
-	public Employee[] assingWork(Component[] worklist) {
+	public Employee[] assignWork(Component[] worklist) {
 		Employee[] result = new Employee[5];
 		int ID;
 		for (int x = 0; x < worklist.length; x++) {
@@ -44,17 +44,31 @@ public class EmpolyeeSystem_X extends EmpolyeeSystem{
 	@Override
 	public int[] startSimulator() {
 		int finalProductCount = 123456789;
+		int day = 5 ;
 		int[] productCount = new int[6];
-
 		for (int x = 0; x < worklist.length; x++) {
 			if (worklist[x].getEffective() < finalProductCount) {
 				finalProductCount = worklist[x].getEffective();
 			}
-			productCount[x] = worklist[x].getEffective();
-
+			productCount[x] = day * worklist[x].getEffective();
 		}
-		productCount[worklist.length] = finalProductCount;
+		productCount[worklist.length] = day * finalProductCount;
 		return productCount;
+	}
+
+	@Override
+	public Component[] resetEffective(Employee[] result, Component[] worklist) {
+		for(int x = 0;x < worklist.length ; x++) {
+			
+			if (worklist[x].getCondition().equals("Strength")) {
+				worklist[x].setEffective(result[x].getStrength());
+			} else if (worklist[x].getCondition().equals("Job score")) {
+				worklist[x].setEffective(result[x].getJob_score());
+			} else if (worklist[x].getCondition().equals("Carefulness")) {
+				worklist[x].setEffective(result[x].getCarefulness());
+			}	
+		}
+		return worklist;
 	}
 
 }
