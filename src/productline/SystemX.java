@@ -86,33 +86,8 @@ public class SystemX extends JFrame {
 				btChange.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String previous = tprevious.getText();
-						int previousNum=-1;
-						for(int x=0;x<result.length;x++) {
-							if(previous.equalsIgnoreCase(result[x].getName())) {
-								previousNum = x;
-								break;
-							}
-						}
 						String change = tnew.getText();
-						int changeNum=-1;
-						for(int y= 0;y<employees.length;y++) {
-							if(change.equalsIgnoreCase(employees[y].getName())) {
-								changeNum = y;
-								break;
-							}
-						}
-						employees[changeNum].setPosition(result[previousNum].getPosition());
-						result[previousNum].setPosition(null);
-						result[previousNum]=employees[changeNum];
-						if(previousNum==0||previousNum==4) {
-							effect[previousNum] = result[previousNum].getStrength();
-						}else if(previousNum==1||previousNum==3) {
-							effect[previousNum] = result[previousNum].getJob_score();
-						}else if(previousNum==2) {
-							effect[previousNum] = result[previousNum].getCarefulness();
-						}else{
-							System.out.println("未知位置");
-						}
+						p.changeEmpollyee(previous,change);
 						
 						JFrame jchange = new JFrame();
 						jchange.setTitle("鞋子-工作崗位");
